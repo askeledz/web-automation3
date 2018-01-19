@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class FirstBrowserCall {
 
@@ -48,7 +49,7 @@ public class FirstBrowserCall {
         log.info("Hash code of webDriver instance = " + driver.hashCode());
         log.info("Test executed using = " + DriverManager.getBrowserInfo());
         driver.get(url);
-        // driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;
     }
 }

@@ -8,7 +8,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.safari.SafariOptions;
 
 /**
  * Author: askeledzija It's a generic WebDriver manager, it works with local and remote instances of WebDriver
@@ -53,12 +52,7 @@ public class LocalDriverFactoryWEB {
         }
         if (browserName.toLowerCase().contains("safari")) {
 
-            DesiredCapabilities capabilities = DesiredCapabilities.safari();
-            SafariOptions safariOptions = new SafariOptions();
-            safariOptions.setUseCleanSession(true);
-            capabilities.setCapability(SafariOptions.CAPABILITY, safariOptions);
-
-            driver = new SafariDriver(safariOptions);
+            driver = new SafariDriver();
             log.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
             return driver;
         }
