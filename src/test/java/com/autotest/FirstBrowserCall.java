@@ -1,6 +1,7 @@
 package com.autotest;
 
 import com.autotest.driver.DriverManager;
+import com.autotest.pages.LoginPage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,16 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-
-//import com.autotest.pages.wbd.Country;
-//import com.autotest.pages.wbd.CountryPage;
-//import com.autotest.pages.wbd.DataPage;
-//import com.autotest.pages.wbd.HICPage;
-//import com.autotest.pages.wbd.Header;
-//import com.autotest.pages.wbd.HomePage;
-//import com.autotest.pages.wbd.OldPage;
-//import com.autotest.pages.wbd.ValuesPage;
-//import com.autotest.utils.CSVUtil;
 
 public class FirstBrowserCall {
 
@@ -30,17 +21,12 @@ public class FirstBrowserCall {
     public void testVerifyHomePage() throws InterruptedException, IOException {
 
         //driver = DriverManager.getDriver();
-
         driver = invokeBrowser(PAGE_URL);
 
-    }
-
-    @Test
-    public void testVerifyHomePage2() throws InterruptedException, IOException {
-
-        //driver = DriverManager.getDriver();
-
-        driver = invokeBrowser(PAGE_URL);
+        // create home page object....
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.inputSomeTextToTextBox("I just start to test");
+       //Assert.assertTrue(homePage.isHomePageLoaded());
 
     }
 
