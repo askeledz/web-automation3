@@ -54,5 +54,8 @@ It os the same for Local, just need to run "TestNG-Local.xml"
 # Tests run from command line
 - $mvn clean test -am -DtestSuite=TestNG-Local.xml
 
+# Reports
+- /target/surefire-reports/index.html
+
 ## Known issues
 - Safari driver has some issue swith Selenium 3.x ... not resolved yet
