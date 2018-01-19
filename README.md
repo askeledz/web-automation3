@@ -21,19 +21,17 @@
 ## Configuration
 Before you run your tests locally or remotely, you need to:
 
-* decide in what browsers you want to run them (I use Chrome, Firefox and IE) 
-* configure TestNG XML suites accordingly (they are in root dir).
-* if you want use Chrome, type "chrome", for Firefox, type "firefox" for parameter browserName, etc...
-* Edit maven-surefire-plugin in POM.xml (<suiteXmlFile>TestNG-Local.xml</suiteXmlFile>).
+* Decide in what browsers you want to run them (I use Chrome, Firefox and Safari) 
+* Configure TestNG XML suites accordingly (they are in root dir).
+* If you want use Chrome, type "chrome", for Firefox, type "firefox" for parameter browserName, etc...
 * To run tests on Internet Explorer use Virtual Machine if you use MacOS.
-* To Use Safari driver needs to be enabled --> Execute following command:
+* In order to Use Safari, driver needs to be enabled --> Execute following command:
   $/usr/bin/safaridriver --enable
 
 ## maven-surefire-plugin (Using TestNG)
 - http://maven.apache.org/surefire/maven-surefire-plugin/examples/testng.html
+* Edit maven-surefire-plugin in POM.xml (<suiteXmlFile>TestNG-Local.xml</suiteXmlFile>) or (<suiteXmlFile>TestNG-Remote.xml</suiteXmlFile>).
 
-## How to run LOCAL tests from IDE
-- Simply right click on the "TestNG-Local.xml" and chose "Run As...."
 
 ### Remote configuration
 - You don't have to change anything in project, simply:
@@ -46,18 +44,26 @@ Before you run your tests locally or remotely, you need to:
 
 - Nodes:
 
-    java -Dwebdriver.chrome.driver=/pathtochromedriver -jar selenium-server-standalone-3.8.1.jar -role node -nodeConfig DefaultNodeWebDriver.json
+    java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-3.8.1.jar -role node -nodeConfig DefaultNodeWebDriver.json
+
+- NOTE: Make sure you execute those commands under dir where chromedriver and geckodriver are located.
+
 
 ## How to run REMOTE tests from InteliJ IDEA
 - Simply right click on the "TestNG-Remote.xml" for remote config usage and "Run As....".
 Please be sure that your HUB and NODES are up&running.
 It os the same for Local, just need to run "TestNG-Local.xml"
 
+## How to run LOCAL tests from IDE
+- Simply right click on the "TestNG-Local.xml" and chose "Run".
+
 # Tests run from command line
-- $mvn clean test -am -DtestSuite=TestNG-Local.xml
+- $mvn clean test -am -DtestSuite=TestNG-Local.xml 
+or
+- $mvn clean test -am -DtestSuite=TestNG-Remote.xml 
 
 # Reports
 - /target/surefire-reports/index.html
 
 ## Known issues
-- Safari driver has some issue swith Selenium 3.x ... not resolved yet
+
