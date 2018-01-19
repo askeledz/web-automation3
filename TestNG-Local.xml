@@ -13,6 +13,8 @@
             <!--<class name="com.autotest.test.SecondTestClass" />-->
         </classes>
     </test>
+
+
     <test name="Tests run in Chrome">
         <parameter name="browserName" value="chrome" />
         <!-- 		<packages>
@@ -22,11 +24,15 @@
             <class name="com.autotest.FirstBrowserCall" />
         </classes>
     </test>
-    <!--<test name="Tests run in Safari">-->
-    <!--<parameter name="browserName" value="safari" />-->
-    <!--<packages> <package name="com.autotest.test" /> </packages>-->
-    <!--<classes>-->
-    <!--<class name="com.autotest.test.VerifyWBDTest" />-->
-    <!--</classes>-->
-    <!--</test>-->
+
+
+    <test name="Tests run in Safari">
+    <parameter name="browserName" value="safari" />
+    <packages> <package name="com.autotest.test" /> </packages>
+    <classes>
+    <class name="com.autotest.FirstBrowserCall" />
+    </classes>
+    </test>
+
+
 </suite>

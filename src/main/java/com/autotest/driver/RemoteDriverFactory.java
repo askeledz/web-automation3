@@ -1,6 +1,7 @@
 package com.autotest.driver;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -35,6 +36,13 @@ public class RemoteDriverFactory {
         }
         if (browserName.equalsIgnoreCase("chrome")) {
             DesiredCapabilities capability = DesiredCapabilities.chrome();
+
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("disable-infobars");
+           // options.addArguments("--start-maximized");
+            // options.addArguments("--kiosk");
+
+            capability.setCapability(ChromeOptions.CAPABILITY, options);
             driver = new RemoteWebDriver(hubUrl, capability);
             return driver;
         }

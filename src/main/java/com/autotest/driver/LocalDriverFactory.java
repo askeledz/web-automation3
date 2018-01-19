@@ -12,9 +12,9 @@ import org.openqa.selenium.safari.SafariDriver;
 /**
  * Author: askeledzija It's a generic WebDriver manager, it works with local and remote instances of WebDriver
  */
-public class LocalDriverFactoryWEB {
+public class LocalDriverFactory {
 
-    static Logger log = Logger.getLogger(LocalDriverFactoryWEB.class);
+    static Logger log = Logger.getLogger(LocalDriverFactory.class);
 
     static WebDriver createInstance(String browserName) {
         WebDriver driver = null;
@@ -34,8 +34,8 @@ public class LocalDriverFactoryWEB {
 
             ChromeOptions options = new ChromeOptions();
             options.addArguments("disable-infobars");
-            options.addArguments("--start-maximized");
-            options.addArguments("--kiosk");
+            //options.addArguments("--start-maximized");
+            //options.addArguments("--kiosk");
 
             DesiredCapabilities capabilities = DesiredCapabilities.chrome();
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);
@@ -51,7 +51,7 @@ public class LocalDriverFactoryWEB {
             return driver;
         }
         if (browserName.toLowerCase().contains("safari")) {
-
+            System.setProperty("webdriver.safari.logfile","Safari.log" );
             driver = new SafariDriver();
             log.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
             return driver;

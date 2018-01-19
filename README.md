@@ -25,7 +25,9 @@ Before you run your tests locally or remotely, you need to:
 * configure TestNG XML suites accordingly (they are in root dir).
 * if you want use Chrome, type "chrome", for Firefox, type "firefox" for parameter browserName, etc...
 * Edit maven-surefire-plugin in POM.xml (<suiteXmlFile>TestNG-Local.xml</suiteXmlFile>).
-* I run tests on Internet Explorer with Virtual Machine since I use MacOS.
+* To run tests on Internet Explorer use Virtual Machine if you use MacOS.
+* To Use Safari driver needs to be enabled --> Execute following command:
+  $/usr/bin/safaridriver --enable
 
 ## maven-surefire-plugin (Using TestNG)
 - http://maven.apache.org/surefire/maven-surefire-plugin/examples/testng.html
