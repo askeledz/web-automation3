@@ -21,16 +21,8 @@ public class LocalDriverFactoryWEB {
         WebDriver driver = null;
         if (browserName.equalsIgnoreCase("firefox")) {
 
-            System.setProperty("webdriver.gecko.driver", "/Users/askeledzija/Documents/Private/Development/workspace/webui/geckodriver");
-            System.setProperty("webdriver.firefox.logfile","/Users/askeledzija/Documents/Private/Development/workspace/webui/log.txt" );
-
-//            FirefoxOptions options = new FirefoxOptions();
-//            options.addArguments("disable-infobars");
-//            options.addArguments("--start-maximized");
-//            options.addArguments("--kiosk");
-//
-//            DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-//            capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options);
+            System.setProperty("webdriver.gecko.driver", "geckodriver");
+            System.setProperty("webdriver.firefox.logfile","log.txt" );
 
             driver = new FirefoxDriver();
             log.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
@@ -38,7 +30,8 @@ public class LocalDriverFactoryWEB {
         }
         if (browserName.equalsIgnoreCase("chrome")) {
 
-            System.setProperty("webdriver.chrome.driver","/Users/askeledzija/Documents/Private/Development/workspace/webui/chromedriver");
+            System.setProperty("webdriver.chrome.driver","chromedriver");
+            System.setProperty("webdriver.chrome.logfile","log.txt" );
 
             ChromeOptions options = new ChromeOptions();
             options.addArguments("disable-infobars");
@@ -59,8 +52,6 @@ public class LocalDriverFactoryWEB {
             return driver;
         }
         if (browserName.toLowerCase().contains("safari")) {
-            //System.setProperty("webdriver.safari.driver", "/Users/askeledzija/Documents/Private/Development/workspace/autotest-deinteam-ui3/SafariDriver.safariextz");
-
 
             DesiredCapabilities capabilities = DesiredCapabilities.safari();
             SafariOptions safariOptions = new SafariOptions();

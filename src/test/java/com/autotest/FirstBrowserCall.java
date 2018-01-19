@@ -35,6 +35,15 @@ public class FirstBrowserCall {
 
     }
 
+    @Test
+    public void testVerifyHomePage2() throws InterruptedException, IOException {
+
+        //driver = DriverManager.getDriver();
+
+        driver = invokeBrowser(PAGE_URL);
+
+    }
+
     /*********** hellper methods *************/
 
     public static void clickAllHyperLinksByCountryName(String countryName) throws InterruptedException {
