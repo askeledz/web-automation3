@@ -31,7 +31,7 @@ Before you run your tests locally or remotely, you need to:
 - http://maven.apache.org/surefire/maven-surefire-plugin/examples/testng.html
 
 ## How to run LOCAL tests from IDE
-- Simply right click on the "src/test/resources/LocalWebDriverListener.xml" and chose "Run As...."
+- Simply right click on the "TestNG-Local.xml" and chose "Run As...."
 
 ### Remote configuration
 - You don't have to change anything in project, simply:
