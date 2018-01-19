@@ -51,8 +51,8 @@ Before you run your tests locally or remotely, you need to:
 Please be sure that your HUB and NODES are up&running.
 It os the same for Local, just need to run "TestNG-Local.xml"
 
-# Tests run
-- $mvn clean test
+# Tests run from command line
+- $mvn clean test -am -DtestSuite=TestNG-Local.xml
 
 ## Known issues
 - Safari driver has some issue swith Selenium 3.x ... not resolved yet
