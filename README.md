@@ -44,7 +44,7 @@ Before you run your tests locally or remotely, you need to:
 
 - Nodes:
 
-    java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone-3.8.1.jar -role node -nodeConfig DefaultNodeWebDriver.json
+    java -Dwebdriver.chrome.driver=chromedriver -Dwebdriver.firefox.driver=geckodriver -jar selenium-server-standalone-3.8.1.jar -role node -nodeConfig DefaultNodeWebDriver.json
 
 - NOTE: Make sure you execute those commands under dir where chromedriver and geckodriver are located.
 
