@@ -22,7 +22,7 @@ public class LocalDriverFactoryWEB {
         if (browserName.equalsIgnoreCase("firefox")) {
 
             System.setProperty("webdriver.gecko.driver", "geckodriver");
-            System.setProperty("webdriver.firefox.logfile","log.txt" );
+            System.setProperty("webdriver.firefox.logfile","Firefox.log" );
 
             driver = new FirefoxDriver();
             log.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
@@ -31,7 +31,7 @@ public class LocalDriverFactoryWEB {
         if (browserName.equalsIgnoreCase("chrome")) {
 
             System.setProperty("webdriver.chrome.driver","chromedriver");
-            System.setProperty("webdriver.chrome.logfile","log.txt" );
+            System.setProperty("webdriver.chrome.logfile","Chrome.log" );
 
             ChromeOptions options = new ChromeOptions();
             options.addArguments("disable-infobars");
