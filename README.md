@@ -44,7 +44,7 @@ Before you run your tests locally or remotely, you need to:
 
 - Nodes:
 
-    java -Dwebdriver.chrome.driver=/<path>/chromedriver -jar selenium-server-standalone-3.8.1.jar -role node -nodeConfig DefaultNodeWebDriver.json
+    java -Dwebdriver.chrome.driver=/pathtochromedriver -jar selenium-server-standalone-3.8.1.jar -role node -nodeConfig DefaultNodeWebDriver.json
 
 ## How to run REMOTE tests from InteliJ IDEA
 - Simply right click on the "TestNG-Remote.xml" for remote config usage and "Run As....".
