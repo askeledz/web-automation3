@@ -58,7 +58,7 @@
             <version>2.20.1</version>
             <configuration>
                 <suiteXmlFiles>
-                    <suiteXmlFile>TestNG-Local.xml</suiteXmlFile>
+                    <suiteXmlFile>testnglocal.xml</suiteXmlFile>
                 </suiteXmlFiles>
             </configuration>
         </plugin>
