@@ -40,4 +40,27 @@
        </classes>
 	</test>
 
+
+	<!--<test name="Tests run in Internet Explorer">-->
+		<!--<parameter name="browserName" value="ie" />-->
+		<!--<packages>-->
+			<!--<package name="com.autotest.test" />-->
+		<!--</packages>-->
+		<!--<classes>-->
+			<!--<class name="com.autotest.FirstBrowserCall" />-->
+		<!--</classes>-->
+	<!--</test>-->
+
+
+	<test name="Tests run in Edge">
+		<parameter name="browserName" value="edge" />
+		<packages>
+			<package name="com.autotest.test" />
+		</packages>
+		<classes>
+			<class name="com.autotest.FirstBrowserCall" />
+		</classes>
+	</test>
+
+
 </suite>

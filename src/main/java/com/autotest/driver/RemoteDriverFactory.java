@@ -57,6 +57,17 @@ public class RemoteDriverFactory {
             return driver;
         }
 
+        if (browserName.equalsIgnoreCase("edge")) {
+            DesiredCapabilities capability = DesiredCapabilities.edge();
+//
+//            EdgeOptions options = new EdgeOptions();
+//
+//            capability.setCapability(EdgeOptions.CAPABILITY, options);
+//            capability.setVersion("ANY");
+            driver = new RemoteWebDriver(hubUrl, capability);
+            return driver;
+        }
+
         log.info("RemoteDriverFactory created an instance of RemoteWebDriver for: " + browserName);
         return driver;
     }

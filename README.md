@@ -33,20 +33,49 @@ Before you run your tests locally or remotely, you need to:
 * Edit maven-surefire-plugin in POM.xml (<suiteXmlFile>TestNG-Local.xml</suiteXmlFile>) or (<suiteXmlFile>TestNG-Remote.xml</suiteXmlFile>).
 
 
-### Remote configuration
+### Remote configuration for Chrome and Firefox
 - You don't have to change anything in project, simply:
 
 - Hub
 
-    java -jar selenium-server-standalone-3.8.1.jar -role hub -hubConfig DefaultHub.json
+java -jar selenium-server-standalone-3.8.1.jar -role hub -hubConfig DefaultHub.json
 
 - Then register the nodes:
 
 - Nodes:
 
-    java -Dwebdriver.chrome.driver=chromedriver -Dwebdriver.firefox.driver=geckodriver -jar selenium-server-standalone-3.8.1.jar -role node -nodeConfig DefaultNodeWebDriver.json
+java -Dwebdriver.chrome.driver=chromedriver -Dwebdriver.firefox.driver=geckodriver -jar selenium-server-standalone-3.8.1.jar -role node -nodeConfig DefaultNodeWebDriver.json
 
-- NOTE: Make sure you execute those commands under dir where chromedriver and geckodriver are located.
+- NOTE: Make sure you execute those commands under dir where chromedriver and geckodriver are located and also .json files should be there.
+
+
+### Remote configuration for Microsoft Edge (How to set up Selenium Grid to test Microsoft Edge from MacOS)
+- Launch your Windows VM. Make sure the Windows VM and your Mac can ping each other over the network.
+- Install Java on both your host computer and the Windows VM.
+- Download the Selenium Grid binary jar file (selenium-server-standalone-3.8.1)to both your Mac and your Windows VM. 
+- Download the Internet Explorer or Edge Driver to your Windows VM only. It is in the same folder as the Selenium Grid binary.
+- Place the .exe and .jar files that comes out in a directory in the Windows PATH. One such directory is C:\Windows\.
+- Now we need one selenium grid hub, and one node. The Mac will be the hub, and Windows will be the node. 
+  On the Mac go to the directory with the selenium-server-standalone file you downloaded earlier (elenium-server-standalone-3.8.1).
+  Then run (replacing the selenium-server stuff with the actual filename):
+
+- Hub on Mac:
+
+java -jar selenium-server-standalone-3.8.1.jar -role hub -hubConfig DefaultHub.json
+
+- You will see some console output about “Launching a selenium grid server”. Now go to the url http://localhost:4444/grid/console. You should see that your hub is up and running, but not offering any browsers yet.
+
+- Before you begin this step, make a note of your Mac’s IP address. Let’s say it is 192.168.1.5. 
+  Now go to your Windows VM and open a command prompt. Navigate to the selenium-server-standalone-????.jar file directory, and execute the following command, replacing the ???? with the proper version, and  with your actual Mac’s IP address (192.168.1.5).
+
+- Node on PC (Windows):
+
+java -Dwebdriver.edge.driver=C:\Windows\MicrosoftWebDriver.exe -jar selenium-server-standalone-3.8.1.jar -role node -hub http://192.168.1.5:4444/grid/register -browser "browserName=MicrosoftEdge,platform=WINDOWS,maxInstances=5"
+
+- You should see some terminal output about “Launching a selenium grid node”. Now go back to your grid console webpage and refresh it. The one at http://localhost:4444/grid/console. You should see some web browsers on offer! You now have a selenium grid running.
+
+- Now it is time to run a test over the grid. Go to your project and edit TestNG-Remote.xml:
+  <parameter name="browserName" value="edge" />
 
 
 ## How to run REMOTE tests from InteliJ IDEA
