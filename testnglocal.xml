@@ -18,10 +18,15 @@
     <test name="Tests run in Chrome">
         <parameter name="browserName" value="chrome" />
         <!-- 		<packages>
-                <package name="com.autotest.test" />
-                </packages> -->
+                       <package name="com.autotest.test" />
+                       </packages> -->
         <classes>
-            <class name="com.autotest.RegressionTests" />
+            <class name="com.autotest.RegressionTests">
+                <methods>
+                    <include name=".*test.*"/>
+                    <exclude name=".*excludetest.*"/>
+                </methods>
+            </class>
         </classes>
     </test>
 
