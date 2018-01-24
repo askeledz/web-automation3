@@ -14,7 +14,7 @@
 			<package name="com.autotest.test" />
 		</packages>
 		<classes>
-			<class name="com.autotest.FirstBrowserCall" />
+			<class name="com.autotest.RegressionTests" />
 			<!-- <class name="com.autotest.test.SecondTestClass" /> -->
 		</classes>
 	</test>
@@ -25,7 +25,7 @@
 			<package name="com.autotest.test" />
 		</packages>
 		<classes>
-			<class name="com.autotest.FirstBrowserCall" />
+			<class name="com.autotest.RegressionTests" />
 			<!-- <class name="com.autotest.test.SecondTestClass" /> -->
 		</classes>
 	</test>
@@ -36,7 +36,7 @@
 			<package name="com.autotest.test" />
 		</packages>
 		<classes>
-			<class name="com.autotest.FirstBrowserCall" />
+			<class name="com.autotest.RegressionTests" />
        </classes>
 	</test>
 
@@ -47,7 +47,7 @@
 			<!--<package name="com.autotest.test" />-->
 		<!--</packages>-->
 		<!--<classes>-->
-			<!--<class name="com.autotest.FirstBrowserCall" />-->
+			<!--<class name="com.autotest.RegressionTests" />-->
 		<!--</classes>-->
 	<!--</test>-->
 
@@ -58,7 +58,7 @@
 			<package name="com.autotest.test" />
 		</packages>
 		<classes>
-			<class name="com.autotest.FirstBrowserCall" />
+			<class name="com.autotest.RegressionTests" />
 		</classes>
 	</test>
 

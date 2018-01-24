@@ -1,35 +1,51 @@
 package com.autotest;
 
 import com.autotest.driver.DriverManager;
+import com.autotest.pages.HomePage;
 import com.autotest.pages.LoginPage;
+import com.autotest.pages.MyPage;
+import com.autotest.util.MySeleniumMethods;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class FirstBrowserCall {
+public class RegressionTests {
 
-    static Logger log = Logger.getLogger(FirstBrowserCall.class);
-    private static String PAGE_URL = "https://www.google.hr";
+    static Logger log = Logger.getLogger(RegressionTests.class);
+
+    //Dave Haeffner’s Practice Site
+    private static String PAGE_URL = "http://automationpractice.com/";
 
     private static WebDriver driver = null;
 
     @Test
-    public void testVerifyHomePage() throws InterruptedException, IOException {
+    public void testLoginPage() throws InterruptedException, IOException {
 
         //driver = DriverManager.getDriver();
         driver = invokeBrowser(PAGE_URL);
 
-        // create home page object....
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.inputSomeTextToTextBox("I just start to test");
-       //Assert.assertTrue(homePage.isHomePageLoaded());
+        // Create home page object....
+        HomePage homePage = new HomePage(driver);
 
-    }
+        //Go to and Create Login Page
+        LoginPage loginPage = homePage.goToLoginPage();
+
+        //Enter credentials
+        loginPage.inputEmail("andrej.skeledzija@gmail.com");
+        loginPage.inputPassword("123456789");
+
+        //Go to and Create My Page
+        MyPage myPage = loginPage.goToMyPage();
+
+        Assert.assertEquals(true, MySeleniumMethods.isDisplayed(By.cssSelector("#header > div.nav > div > div > nav > div:nth-child(1) > a > span"), driver));
+
+   }
 
     /*********** hellper methods *************/
 
@@ -40,6 +56,7 @@ public class FirstBrowserCall {
     public static WebElement getElementWithIndex(String countryName) {
         return driver.findElement(By.linkText(countryName));
     }
+
 
     private WebDriver invokeBrowser(String url) {
         // private void invokeBrowser(String url) {

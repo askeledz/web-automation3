@@ -5,14 +5,14 @@
         <listener class-name="com.autotest.driver.LocalWebDriverListener" />
     </listeners>
 
-    <test name="Tests run in FF">
-        <parameter name="browserName" value="firefox" />
-        <packages> <package name="com.autotest.test" /> </packages>
-        <classes>
-            <class name="com.autotest.FirstBrowserCall" />
-            <!--<class name="com.autotest.test.SecondTestClass" />-->
-        </classes>
-    </test>
+    <!--<test name="Tests run in FF">-->
+        <!--<parameter name="browserName" value="firefox" />-->
+        <!--<packages> <package name="com.autotest.test" /> </packages>-->
+        <!--<classes>-->
+            <!--<class name="com.autotest.RegressionTests" />-->
+            <!--&lt;!&ndash;<class name="com.autotest.test.SecondTestClass" />&ndash;&gt;-->
+        <!--</classes>-->
+    <!--</test>-->
 
 
     <test name="Tests run in Chrome">
@@ -21,18 +21,18 @@
                 <package name="com.autotest.test" />
                 </packages> -->
         <classes>
-            <class name="com.autotest.FirstBrowserCall" />
+            <class name="com.autotest.RegressionTests" />
         </classes>
     </test>
 
 
-    <test name="Tests run in Safari">
-    <parameter name="browserName" value="safari" />
-    <packages> <package name="com.autotest.test" /> </packages>
-    <classes>
-    <class name="com.autotest.FirstBrowserCall" />
-    </classes>
-    </test>
+    <!--<test name="Tests run in Safari">-->
+    <!--<parameter name="browserName" value="safari" />-->
+    <!--<packages> <package name="com.autotest.test" /> </packages>-->
+    <!--<classes>-->
+    <!--<class name="com.autotest.RegressionTests" />-->
+    <!--</classes>-->
+    <!--</test>-->
 
 
 </suite>

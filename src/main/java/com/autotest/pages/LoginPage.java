@@ -13,35 +13,47 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class LoginPage {
 
-        WebDriver driver;
+    WebDriver driver;
 
-        @FindBy(how = How.CSS, using = "#lst-ib")
-        WebElement input_text_box;
+    @FindBy(how = How.ID, using = "email")
+    WebElement userEmail;
 
-        public LoginPage(WebDriver driver) {
-            this.driver = driver;
-            PageFactory.initElements(driver, this);
-        }
+    @FindBy(how = How.ID, using = "passwd")
+    WebElement userPassword;
 
-//        // go to data page from home page
-//        public DataPage goToDataPage(){
-//            //   new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOf(data_link));
-//            data_link.click();
-//            return new DataPage(driver);
-//        }
-
-        //ToDO We will use this boolean for assertion. To check if page is opened
+    @FindBy(how = How.CSS, using = "#SubmitLogin > span")
+    WebElement signInButton;
 
 
-    public boolean isTextBoxVisible(){
-        new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOf(input_text_box));
-        return input_text_box.isDisplayed();
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-        public void inputSomeTextToTextBox(String inputText) {
-            isTextBoxVisible();
-            input_text_box.sendKeys(inputText);
-        }
-
+    public boolean isEmailBoxVisible(){
+        new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOf(userEmail));
+        return userEmail.isDisplayed();
     }
 
+    public boolean isPasswordBoxVisible(){
+        new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOf(userPassword));
+        return userPassword.isDisplayed();
+    }
+
+    public void inputEmail(String email) {
+        isEmailBoxVisible();
+        userEmail.sendKeys(email);
+    }
+
+    public void inputPassword(String pass) {
+        isPasswordBoxVisible();
+        userPassword.sendKeys(pass);
+    }
+
+    // go to data page from home page
+    public MyPage goToMyPage(){
+        new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOf(signInButton));
+        signInButton.click();
+        return new MyPage(driver);
+    }
+}
