@@ -87,15 +87,15 @@ It os the same for Local, just need to run "TestNG-Local.xml"
 - Simply right click on the "TestNG-Local.xml" and chose "Run".
 
 # Tests run from command line
-- $mvn -DtestSuite=testnglocal.xml test
-or
-- $mvn -DtestSuite=testngremote.xml test
-or with specific profile from pom.xml:
-- $mvn clean test -P localRunner
-or with GRID env:
-- $mvn clean test -P remoteRunner
-or 
-- $mvn clean test -P remoteRunner
+    - $mvn -DtestSuite=testnglocal.xml test
+- or
+    - $mvn -DtestSuite=testngremote.xml test
+- or with specific profile from pom.xml:
+    - $mvn clean test -P localRunner
+- or with GRID env:
+    - $mvn clean test -P remoteRunner
+- or 
+    - $mvn clean test -P remoteRunner
 
 # Reports
 - /target/surefire-reports/index.html
