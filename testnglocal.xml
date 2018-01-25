@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test executed using remote WebDriver" parallel="tests">
+<suite name="Test executed using local WebDriver" parallel="tests" thread-count="2">
     <listeners>
         <listener class-name="com.autotest.driver.LocalWebDriverListener" />
     </listeners>
 
     <!--<test name="Tests run in FF">-->
-        <!--<parameter name="browserName" value="firefox" />-->
-        <!--<packages> <package name="com.autotest.test" /> </packages>-->
-        <!--<classes>-->
-            <!--<class name="com.autotest.RegressionTests" />-->
-            <!--&lt;!&ndash;<class name="com.autotest.test.SecondTestClass" />&ndash;&gt;-->
-        <!--</classes>-->
+    <!--<parameter name="browserName" value="firefox" />-->
+    <!--<packages> <package name="com.autotest.test" /> </packages>-->
+    <!--<classes>-->
+    <!--<class name="com.autotest.VerifyLandingPage" />-->
+    <!--&lt;!&ndash;<class name="com.autotest.test.SecondTestClass" />&ndash;&gt;-->
+    <!--</classes>-->
     <!--</test>-->
 
-
-    <test name="Tests run in Chrome">
+    <test name="Tests run in Chrome 1">
         <parameter name="browserName" value="chrome" />
         <!-- 		<packages>
                        <package name="com.autotest.test" />
@@ -24,18 +23,36 @@
             <class name="com.autotest.RegressionTests">
                 <methods>
                     <include name=".*test.*"/>
-                    <exclude name=".*excludetest.*"/>
+                    <exclude name=".*extest.*"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Tests run in Chrome 2">
+        <parameter name="browserName" value="chrome" />
+        <!-- 		<packages>
+                       <package name="com.autotest.test" />
+                       </packages> -->
+        <classes>
+            <class name="com.autotest.RegressionTests">
+                <methods>
+                    <include name=".*test.*"/>
+                    <exclude name=".*extest.*"/>
                 </methods>
             </class>
         </classes>
     </test>
 
 
+
+
+
     <!--<test name="Tests run in Safari">-->
     <!--<parameter name="browserName" value="safari" />-->
     <!--<packages> <package name="com.autotest.test" /> </packages>-->
     <!--<classes>-->
-    <!--<class name="com.autotest.RegressionTests" />-->
+    <!--<class name="com.autotest.VerifyLandingPage" />-->
     <!--</classes>-->
     <!--</test>-->
 
