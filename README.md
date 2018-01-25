@@ -88,13 +88,8 @@ It os the same for Local, just need to run "TestNG-Local.xml"
 
 # Tests run from command line
     - $mvn -DtestSuite=testnglocal.xml test
-- or
     - $mvn -DtestSuite=testngremote.xml test
-- or with specific profile from pom.xml:
     - $mvn clean test -P localRunner
-- or with GRID env:
-    - $mvn clean test -P remoteRunner
-- or 
     - $mvn clean test -P remoteRunner
 
 # Reports
