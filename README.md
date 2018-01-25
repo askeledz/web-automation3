@@ -90,17 +90,12 @@ It os the same for Local, just need to run "TestNG-Local.xml"
 - $mvn -DtestSuite=testnglocal.xml test
 or
 - $mvn -DtestSuite=testngremote.xml test
-
 or with specific profile from pom.xml:
-
 - $mvn clean test -P localRunner
-or
+or with GRID env:
 - $mvn clean test -P remoteRunner
-
-## How to run tests remotely using Selenium GRID
-First of all prepare your Grid environment, then:
-
-    mvn clean test -P remoteRunner
+or 
+- $mvn clean test -P remoteRunner
 
 # Reports
 - /target/surefire-reports/index.html
