@@ -1,6 +1,7 @@
 package com.autotest.driver;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,7 +16,8 @@ import org.openqa.selenium.safari.SafariDriver;
  */
 public class LocalDriverFactory {
 
-    static Logger log = Logger.getLogger(LocalDriverFactory.class);
+    static final Logger logger = LogManager.getLogger(LocalDriverFactory.class.getName());
+
 
     static WebDriver createInstance(String browserName) {
         WebDriver driver = null;
@@ -29,7 +31,7 @@ public class LocalDriverFactory {
             //options.setHeadless(true);
 
             driver = new FirefoxDriver(options);
-            log.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
+            logger.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
             return driver;
         }
         if (browserName.equalsIgnoreCase("chrome")) {
@@ -49,23 +51,23 @@ public class LocalDriverFactory {
             capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 
             driver = new ChromeDriver(options);
-            log.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
+            logger.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
             return driver;
 
         }
         if (browserName.equalsIgnoreCase("ie")) {
             driver = new InternetExplorerDriver();
-            log.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
+            logger.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
             return driver;
         }
         if (browserName.toLowerCase().contains("safari")) {
             System.setProperty("webdriver.safari.logfile","Safari.log" );
             driver = new SafariDriver();
-            log.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
+            logger.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
             return driver;
         }
 
-        log.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
+        logger.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
         return driver;
     }
 }

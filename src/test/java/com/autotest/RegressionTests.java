@@ -6,7 +6,8 @@ import com.autotest.pages.LoginPage;
 import com.autotest.pages.MyPage;
 import com.autotest.test.BaseTestCase;
 import com.autotest.util.MySeleniumMethods;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,22 +18,18 @@ import java.util.concurrent.TimeUnit;
 
 public class RegressionTests extends BaseTestCase {
 
-    static Logger log = Logger.getLogger(RegressionTests.class);
+
 
     //Dave Haeffner’s Practice Site
     private static String PAGE_URL = "http://automationpractice.com/";
 
     private static WebDriver driver = null;
 
-    /*********** hellper methods *************/
+    //private static Logger logger = LogManager.getLogger();
 
-    public static void clickAllHyperLinksByCountryName(String countryName) throws InterruptedException {
-        getElementWithIndex(countryName).click();
-    }
-
-    public static WebElement getElementWithIndex(String countryName) {
-        return driver.findElement(By.linkText(countryName));
-    }
+    // Define a static logger variable so that it references the
+    // Logger instance named "MyApp".
+    private static final Logger logger = LogManager.getLogger(RegressionTests.class);
 
     @BeforeMethod
     public void beforeMethod() {
@@ -41,7 +38,21 @@ public class RegressionTests extends BaseTestCase {
 
     @BeforeTest
     public void beforeTest() {
-
+        logger.debug("This is a debug message");
+        logger.info("This is an info message");
+        logger.warn("This is a warn message");
+        logger.error("This is an error message");
+        logger.fatal("This is a fatal message");
+        logger.entry();
+        logger.trace("Entering application.");
+        System.out.println("dkfjlikvjqelgjidsrjgiejgoiewjhgouehrgkuwheriughweriughewiruhgieurhgiuehgie" +
+                "rglekrjgowerjgioejrogijergwee" +
+                "hgw" +
+                "rth" +
+                "rth" +
+                "wrt" +
+                "hrw" +
+                "thrwkhjwojhoitjhoiwrjohijrwiohjrwoitjhowrihtjowritjhorithweth");
     }
 
     @AfterMethod
@@ -55,10 +66,13 @@ public class RegressionTests extends BaseTestCase {
     }
 
     @Parameters
-    @Test(description = "successful login", groups = {"Regression"})
     @Override
+    @Test
     public void testLandingPage() {
         //driver = DriverManager.getDriver();
+        //System.setProperty("log4j.configuration", "log4j2-test.properties");
+
+
         driver = invokeBrowser(PAGE_URL);
 
         // Create home page object....
@@ -81,8 +95,8 @@ public class RegressionTests extends BaseTestCase {
 
 
     @Parameters
-    @Test(description = "successful login", groups = {"Regression"})
-    public void excludetestLandingPage() {
+    @Test
+    public void extestLandingPage() {
         //driver = DriverManager.getDriver();
         driver = invokeBrowser(PAGE_URL);
 
@@ -103,13 +117,25 @@ public class RegressionTests extends BaseTestCase {
 
     }
 
+
+
+    /*********** hellper methods *************/
+
+    public static void clickAllHyperLinksByCountryName(String countryName) throws InterruptedException {
+        getElementWithIndex(countryName).click();
+    }
+
+    public static WebElement getElementWithIndex(String countryName) {
+        return driver.findElement(By.linkText(countryName));
+    }
+
     private WebDriver invokeBrowser(String url) {
         // private void invokeBrowser(String url) {
         WebDriver driver = DriverManager.getDriver();
 
-        log.info("Thread id = " + Thread.currentThread().getId());
-        log.info("Hash code of webDriver instance = " + driver.hashCode());
-        log.info("Test executed using = " + DriverManager.getBrowserInfo());
+        logger.info("Thread id = " + Thread.currentThread().getId());
+        logger.info("Hash code of webDriver instance = " + driver.hashCode());
+        logger.info("Test executed using = " + DriverManager.getBrowserInfo());
         driver.get(url);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;

@@ -1,6 +1,8 @@
 package com.autotest.driver;
 
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -13,19 +15,16 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 public class DriverManager {
 
     private static ThreadLocal<WebDriver> remoteWebDriver = new ThreadLocal<WebDriver>();
-    static Logger log;
 
-    static {
-        log = Logger.getLogger(DriverManager.class);
-    }
+    static final Logger logger = LogManager.getLogger(DriverManager.class.getName());
 
     public static WebDriver getDriver() {
-        log.debug("Getting instance of remote driver");
+        logger.debug("Getting instance of remote driver");
         return remoteWebDriver.get();
     }
 
     public static void setWebDriver(WebDriver driver) {
-        log.debug("Setting the driver");
+        logger.debug("Setting the driver");
         remoteWebDriver.set(driver);
     }
 
@@ -34,7 +33,7 @@ public class DriverManager {
      * *WebDriverListeners to change the test name.
      */
     public static String getBrowserInfo() {
-        log.debug("Getting browser info");
+        logger.debug("Getting browser info");
         Capabilities cap = ((RemoteWebDriver) DriverManager.getDriver()).getCapabilities();
         String b = cap.getBrowserName();
         String os = cap.getPlatform().toString();

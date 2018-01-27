@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test executed using local WebDriver" parallel="tests" thread-count="2">
+<suite name="Test executed using local WebDriver" parallel="tests" thread-count="1">
     <listeners>
         <listener class-name="com.autotest.driver.LocalWebDriverListener" />
     </listeners>
@@ -29,20 +29,20 @@
         </classes>
     </test>
 
-    <test name="Tests run in Chrome 2">
-        <parameter name="browserName" value="chrome" />
-        <!-- 		<packages>
-                       <package name="com.autotest.test" />
-                       </packages> -->
-        <classes>
-            <class name="com.autotest.RegressionTests">
-                <methods>
-                    <include name=".*test.*"/>
-                    <exclude name=".*extest.*"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
+    <!--<test name="Tests run in Chrome 2">-->
+        <!--<parameter name="browserName" value="chrome" />-->
+        <!--&lt;!&ndash; 		<packages>-->
+                       <!--<package name="com.autotest.test" />-->
+                       <!--</packages> &ndash;&gt;-->
+        <!--<classes>-->
+            <!--<class name="com.autotest.RegressionTests">-->
+                <!--<methods>-->
+                    <!--<include name=".*test.*"/>-->
+                    <!--<exclude name=".*extest.*"/>-->
+                <!--</methods>-->
+            <!--</class>-->
+        <!--</classes>-->
+    <!--</test>-->
 
 
 

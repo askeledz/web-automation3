@@ -1,6 +1,7 @@
 package com.autotest.driver;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -15,7 +16,7 @@ import java.net.URL;
 
 public class RemoteDriverFactory {
 
-    static Logger log = Logger.getLogger(RemoteDriverFactory.class);
+    static final Logger logger = LogManager.getLogger(RemoteDriverFactory.class.getName());
 
     static RemoteWebDriver createInstance(String browserName) {
         URL hubUrl = null;
@@ -68,7 +69,7 @@ public class RemoteDriverFactory {
             return driver;
         }
 
-        log.info("RemoteDriverFactory created an instance of RemoteWebDriver for: " + browserName);
+        logger.info("RemoteDriverFactory created an instance of RemoteWebDriver for: " + browserName);
         return driver;
     }
 }
