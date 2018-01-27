@@ -25,10 +25,7 @@ public class RegressionTests extends BaseTestCase {
 
     private static WebDriver driver = null;
 
-    //private static Logger logger = LogManager.getLogger();
-
-    // Define a static logger variable so that it references the
-    // Logger instance named "MyApp".
+    //Logger
     private static final Logger logger = LogManager.getLogger(RegressionTests.class);
 
     @BeforeMethod
@@ -38,21 +35,7 @@ public class RegressionTests extends BaseTestCase {
 
     @BeforeTest
     public void beforeTest() {
-        logger.debug("This is a debug message");
-        logger.info("This is an info message");
-        logger.warn("This is a warn message");
-        logger.error("This is an error message");
-        logger.fatal("This is a fatal message");
-        logger.entry();
-        logger.trace("Entering application.");
-        System.out.println("dkfjlikvjqelgjidsrjgiejgoiewjhgouehrgkuwheriughweriughewiruhgieurhgiuehgie" +
-                "rglekrjgowerjgioejrogijergwee" +
-                "hgw" +
-                "rth" +
-                "rth" +
-                "wrt" +
-                "hrw" +
-                "thrwkhjwojhoitjhoiwrjohijrwiohjrwoitjhowrihtjowritjhorithweth");
+
     }
 
     @AfterMethod
