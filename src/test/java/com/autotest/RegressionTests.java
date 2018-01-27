@@ -6,14 +6,15 @@ import com.autotest.pages.LoginPage;
 import com.autotest.pages.MyPage;
 import com.autotest.test.BaseTestCase;
 import com.autotest.util.MySeleniumMethods;
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class RegressionTests extends BaseTestCase {
@@ -51,7 +52,7 @@ public class RegressionTests extends BaseTestCase {
     @Parameters
     @Override
     @Test
-    public void testLandingPage() {
+    public void testLandingPage() throws IOException {
         //driver = DriverManager.getDriver();
         //System.setProperty("log4j.configuration", "log4j2-test.properties");
 
@@ -72,6 +73,12 @@ public class RegressionTests extends BaseTestCase {
         MyPage myPage = loginPage.goToMyPage();
 
         Assert.assertEquals(true, MySeleniumMethods.isDisplayed(By.cssSelector("#header > div.nav > div > div > nav > div:nth-child(1) > a > span"), driver));
+
+
+        //Take screenshot
+        File scr = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scr,new File("target/screenshot.png"));
+
 
     }
 

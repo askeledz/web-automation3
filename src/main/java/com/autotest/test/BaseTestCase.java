@@ -1,5 +1,7 @@
 package com.autotest.test;
 
+import java.io.IOException;
+
 /**
  * Created by Andrej Skeledzija 2017
  */
@@ -13,5 +15,5 @@ public abstract class BaseTestCase {
 
     public abstract void afterTest();
 
-    public abstract void testLandingPage();
+    public abstract void testLandingPage() throws IOException;
 }
