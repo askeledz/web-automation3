@@ -52,7 +52,7 @@ public class RegressionTests extends BaseTestCase {
     @Parameters
     @Override
     @Test
-    public void testLandingPage() throws IOException {
+    public void testLandingPage() {
         //driver = DriverManager.getDriver();
         //System.setProperty("log4j.configuration", "log4j2-test.properties");
 
@@ -76,10 +76,12 @@ public class RegressionTests extends BaseTestCase {
 
 
         //Take screenshot
-        File scr = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scr,new File("target/screenshot.png"));
-
-
+        File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(file, new File("target/screenshot.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
