@@ -19,7 +19,7 @@ public class RemoteWebDriverListener implements IInvokedMethodListener {
     static final Logger logger = LogManager.getLogger(RemoteWebDriverListener.class.getName());
     
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        logger.debug("BEGINNING: organized.chaos.RemoteWebDriverListener.beforeInvocation");
+        logger.debug("BEGINNING: RemoteWebDriverListener.beforeInvocation");
         if (method.isTestMethod()) {
             // get browser name specified in the TestNG XML test suite file
             String browserName = method.getTestMethod().getXmlTest().getLocalParameters().get("browserName");
@@ -38,11 +38,11 @@ public class RemoteWebDriverListener implements IInvokedMethodListener {
         } else {
             logger.warn("Provided method is NOT a TestNG testMethod!!!");
         }
-        logger.debug("END: organized.chaos.RemoteWebDriverListener.beforeInvocation");
+        logger.debug("END: RemoteWebDriverListener.beforeInvocation");
     }
 
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-        logger.debug("BEGINNING: organized.chaos.RemoteWebDriverListener.afterInvocation");
+        logger.debug("BEGINNING: RemoteWebDriverListener.afterInvocation");
         if (method.isTestMethod()) {
             String browser = DriverManager.getBrowserInfo();
             try {
@@ -61,6 +61,6 @@ public class RemoteWebDriverListener implements IInvokedMethodListener {
                 }
             }
         }
-        logger.debug("END: organized.chaos.RemoteWebDriverListener.afterInvocation");
+        logger.debug("END: RemoteWebDriverListener.afterInvocation");
     }
 }

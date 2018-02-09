@@ -21,7 +21,7 @@ public class LocalWebDriverListener implements IInvokedMethodListener {
     static final Logger logger = LogManager.getLogger(LocalWebDriverListener.class.getName());
 
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        logger.debug("BEGINNING: askeledz.driver.LocalWebDriverListener.beforeInvocation");
+        logger.debug("BEGINNING: LocalWebDriverListener.beforeInvocation");
         if (method.isTestMethod()) {
             // get browser name specified in the TestNG XML test suite file
             String browserName = method.getTestMethod().getXmlTest().getLocalParameters().get("browserName");
@@ -36,11 +36,11 @@ public class LocalWebDriverListener implements IInvokedMethodListener {
             logger.warn("Provided method is NOT a TestNG testMethod!!!" + " --> " + method.toString());
 
         }
-        logger.debug("END: askeledz.driver.LocalWebDriverListener.beforeInvocation");
+        logger.debug("END: LocalWebDriverListener.beforeInvocation");
     }
 
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-        logger.debug("BEGINNING: askeledz.driver.LocalWebDriverListener.afterInvocation");
+        logger.debug("BEGINNING: LocalWebDriverListener.afterInvocation");
         if (method.isTestMethod()) {
             String browser = DriverManager.getBrowserInfo();
             try {
@@ -63,6 +63,6 @@ public class LocalWebDriverListener implements IInvokedMethodListener {
                 }
             }
         }
-        logger.debug("END: askeledz.driver.LocalWebDriverListener.afterInvocation");
+        logger.debug("END: LocalWebDriverListener.afterInvocation");
     }
 }

@@ -43,7 +43,7 @@ public class LocalDriverFactory {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("disable-infobars");
             //Set Chrome Headless mode as TRUE
-            //options.setHeadless(true);
+            options.setHeadless(true);
             //options.addArguments("--start-maximized");
             //options.addArguments("--kiosk");
 
