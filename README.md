@@ -12,11 +12,14 @@
 3. chromedriver 2.35 (https://sites.google.com/a/chromium.org/chromedriver/downloads)
 3. selenium-server-standalone-3.8.1.jar (http://www.seleniumhq.org/download/)
 
-- put those files in the project root folder (except firefox which should be installed by default). 
+- put files (1-3) in the project root folder
+- make sure you download files for appropriate platform
+- make sure that appropriate browsers are installed too 
 
 # IMPORTING PROJECT TO IntelliJ IDEA
 1. Import Project --> Select project root dir --> Import project from external model - Maven (leave everything by default)
-2. This is Maven project and you should import dependencies.
+2. Set project name (You can choose the same as artifactid in pom.xml file)
+3. This is Maven project and you should import dependencies.
 
 ## Configuration
 Before you run your tests locally or remotely, you need to:
