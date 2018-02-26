@@ -7,12 +7,11 @@
 
 # Files to download:
 *****************************
-1. firefox 57.x (https://www.mozilla.org/en-US/firefox/new/)
-2. geckodriver 0.19.x (https://github.com/mozilla/geckodriver/releases)
-3. chromedriver 2.35 (https://sites.google.com/a/chromium.org/chromedriver/downloads)
+1. geckodriver 0.19.x (https://github.com/mozilla/geckodriver/releases)
+2. chromedriver 2.35 (https://sites.google.com/a/chromium.org/chromedriver/downloads)
 3. selenium-server-standalone-3.8.1.jar (http://www.seleniumhq.org/download/)
 
-- put files (1-3) in the project root folder
+- put files (1-2) in the project root folder
 - make sure you download files for appropriate platform
 - make sure that appropriate browsers are installed too 
 
