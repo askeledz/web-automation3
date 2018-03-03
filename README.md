@@ -1,11 +1,11 @@
-# Selenium Grid (PageObjectModel)
+# Selenium Grid (POM - PageObjectModel)
 
 - An example project that runs tests using TestNG.
 - To drive the browsers I use Selenium WebDriver.
 - Tests can be executed locally or remotely.
 - Project is created on MacBook Pro (macOS, High Sierrs).
 
-# Files to download:
+## Files to download:
 *****************************
 1. geckodriver 0.19.x (https://github.com/mozilla/geckodriver/releases)
 2. chromedriver 2.35 (https://sites.google.com/a/chromium.org/chromedriver/downloads)
@@ -13,12 +13,12 @@
 
 - put files (1-2) in the project root folder
 - make sure you download files for appropriate platform
-- make sure that appropriate browsers are installed too 
+- make sure that appropriate browsers are installed too
 
-# IMPORTING PROJECT TO IntelliJ IDEA
+## Importing Project (IntelliJ IDEA)
 1. Import Project --> Select project root dir --> Import project from external model - Maven (leave everything by default)
 2. Set project name (You can choose the same as artifactid in pom.xml file)
-3. This is Maven project and you should import dependencies.
+2. This is Maven project and you should import dependencies.
 
 ## Configuration
 Before you run your tests locally or remotely, you need to:
@@ -28,30 +28,31 @@ Before you run your tests locally or remotely, you need to:
 * If you want use Chrome, type "chrome", for Firefox, type "firefox" for parameter browserName, etc...
 * To run tests on Internet Explorer use Virtual Machine if you use MacOS.
 * In order to Use Safari, driver needs to be enabled --> Execute following command:
-  $/usr/bin/safaridriver --enable
+  
+  - $/usr/bin/safaridriver --enable
 
 ## maven-surefire-plugin (Using TestNG)
 - http://maven.apache.org/surefire/maven-surefire-plugin/examples/testng.html
-* Edit maven-surefire-plugin in POM.xml (<suiteXmlFile>TestNG-Local.xml</suiteXmlFile>) or (<suiteXmlFile>TestNG-Remote.xml</suiteXmlFile>).
+* Edit maven-surefire-plugin in POM.xml (<suiteXmlFile>testnglocal.xml</suiteXmlFile>) or (<suiteXmlFile>testngremote.xml</suiteXmlFile>).
 
 
-### Remote configuration for Chrome and Firefox
+## Remote configuration for Chrome and Firefox
 - You don't have to change anything in project, simply:
 
 - Hub
 
-java -jar selenium-server-standalone-3.8.1.jar -role hub -hubConfig DefaultHub.json
+  - $java -jar selenium-server-standalone-3.8.1.jar -role hub -hubConfig DefaultHub.json
 
 - Then register the nodes:
 
 - Nodes:
 
-java -Dwebdriver.chrome.driver=chromedriver -Dwebdriver.firefox.driver=geckodriver -jar selenium-server-standalone-3.8.1.jar -role node -nodeConfig DefaultNodeWebDriver.json
+  - $java -Dwebdriver.chrome.driver=chromedriver -Dwebdriver.firefox.driver=geckodriver -jar selenium-server-standalone-3.8.1.jar -role node -nodeConfig DefaultNodeWebDriver.json
 
 - NOTE: Make sure you execute those commands under dir where chromedriver and geckodriver are located and also .json files should be there.
 
 
-### Remote configuration for Microsoft Edge (How to set up Selenium Grid to test Microsoft Edge from MacOS)
+## Remote configuration for Microsoft Edge (How to set up Selenium Grid to test Microsoft Edge from MacOS)
 - Launch your Windows VM. Make sure the Windows VM and your Mac can ping each other over the network.
 - Install Java on both your host computer and the Windows VM.
 - Download the Selenium Grid binary jar file (selenium-server-standalone-3.8.1)to both your Mac and your Windows VM. 
@@ -63,7 +64,7 @@ java -Dwebdriver.chrome.driver=chromedriver -Dwebdriver.firefox.driver=geckodriv
 
 - Hub on Mac:
 
-java -jar selenium-server-standalone-3.8.1.jar -role hub -hubConfig DefaultHub.json
+  - $java -jar selenium-server-standalone-3.8.1.jar -role hub -hubConfig DefaultHub.json
 
 - You will see some console output about “Launching a selenium grid server”. Now go to the url http://localhost:4444/grid/console. You should see that your hub is up and running, but not offering any browsers yet.
 
@@ -72,7 +73,7 @@ java -jar selenium-server-standalone-3.8.1.jar -role hub -hubConfig DefaultHub.j
 
 - Node on PC (Windows):
 
-java -Dwebdriver.edge.driver=C:\Windows\MicrosoftWebDriver.exe -jar selenium-server-standalone-3.8.1.jar -role node -hub http://192.168.1.5:4444/grid/register -browser "browserName=MicrosoftEdge,platform=WINDOWS,maxInstances=5"
+  - $java -Dwebdriver.edge.driver=C:\Windows\MicrosoftWebDriver.exe -jar selenium-server-standalone-3.8.1.jar -role node -hub http://192.168.1.5:4444/grid/register -browser "browserName=MicrosoftEdge,platform=WINDOWS,maxInstances=5"
 
 - You should see some terminal output about “Launching a selenium grid node”. Now go back to your grid console webpage and refresh it. The one at http://localhost:4444/grid/console. You should see some web browsers on offer! You now have a selenium grid running.
 
@@ -88,14 +89,41 @@ It os the same for Local, just need to run "TestNG-Local.xml"
 ## How to run LOCAL tests from IDE
 - Simply right click on the "TestNG-Local.xml" and chose "Run".
 
-# Tests run from command line
-    - $mvn -DtestSuite=testnglocal.xml test
-    - $mvn -DtestSuite=testngremote.xml test
-    - $mvn clean test -P localRunner
-    - $mvn clean test -P remoteRunner
+## Tests run from command line
+- $mvn clean test -am -DtestSuite=testnglocal.xml 
+- $mvn clean test -am -DtestSuite=testngremote.xml 
 
-# Reports
+## Reports
 - /target/surefire-reports/index.html
 
-## Known issues
+## Jenkins Setup
+- Install Jenkins:
+  - $brew install jenkins
+- Run Jenkins
+  - $jenkins
 
+NOTE: For very first start Jenkins needs to be activated. Copy password from console (should be on the screen) and activate Jenkins on Browser (localhost:8080) and continue installation from browser.
+
+- Before start we need to setup Maven:
+  - Manage Jenkins --> Global Tool Configuration and setup Maven as following:
+    - Name: mavenname
+    - Install Automatically = true
+    - Install from Apache (Version 3.5.2)
+    
+- New job (item):
+    - Name: projectname
+    - Freestyle project
+    - Config: 
+      - Source Code Management: 
+        - Git (e.g. projecturl.git ) and credentials
+      - Build: 
+        - Maven version: (e.g. mavenname)
+        - Goals: clean test -am -DtestSuite=testnglocal.xml
+        - Advanced: POM: pom.xml
+
+## Set up Test Results Analyzer Plugin for Jenkins
+- Manage Jenkins --> Manage Plugins (e.g search for "Test Results Analyzer Plugin")
+- Install plugin and restart Jenkins.
+- At Jenkins dashboard, select <your project> / Configure
+- Under Post-build Actions tab, select Add post-build action and choose Publish JUnit test result report
+- At Test report XMLs, enter the path to your .xml report file, the analyzer will find data here to create charts, in my    case, it's target/surefire-reports/*.xml, you can edit the path to handle more tests.
