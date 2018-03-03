@@ -1,22 +1,23 @@
 package com.autotest.driver;
 
+
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 /**
- * Author: askeledzija 
+ * Author: askeledzija
  * It's a generic WebDriver manager, it works with local and remote instances of WebDriver
  */
 
 public class RemoteDriverFactory {
 
-    static final Logger logger = LogManager.getLogger(RemoteDriverFactory.class.getName());
+    private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger(RemoteDriverFactory.class);
 
     static RemoteWebDriver createInstance(String browserName) {
         URL hubUrl = null;
@@ -30,9 +31,11 @@ public class RemoteDriverFactory {
 
     static RemoteWebDriver createInstance(URL hubUrl, String browserName) {
         RemoteWebDriver driver = null;
+
         if (browserName.equalsIgnoreCase("firefox")) {
             DesiredCapabilities capability = DesiredCapabilities.firefox();
             driver = new RemoteWebDriver(hubUrl, capability);
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             return driver;
         }
         if (browserName.equalsIgnoreCase("chrome")) {
@@ -40,21 +43,24 @@ public class RemoteDriverFactory {
 
             ChromeOptions options = new ChromeOptions();
             options.addArguments("disable-infobars");
-           // options.addArguments("--start-maximized");
+            // options.addArguments("--start-maximized");
             // options.addArguments("--kiosk");
 
             capability.setCapability(ChromeOptions.CAPABILITY, options);
             driver = new RemoteWebDriver(hubUrl, capability);
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             return driver;
         }
         if (browserName.equalsIgnoreCase("ie")) {
             DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
             driver = new RemoteWebDriver(hubUrl, capability);
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             return driver;
         }
         if (browserName.equalsIgnoreCase("safari")) {
             DesiredCapabilities capability = DesiredCapabilities.safari();
             driver = new RemoteWebDriver(hubUrl, capability);
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             return driver;
         }
 
@@ -66,10 +72,11 @@ public class RemoteDriverFactory {
 //            capability.setCapability(EdgeOptions.CAPABILITY, options);
 //            capability.setVersion("ANY");
             driver = new RemoteWebDriver(hubUrl, capability);
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             return driver;
         }
 
-        logger.info("RemoteDriverFactory created an instance of RemoteWebDriver for: " + browserName);
+        //logger.info("Browser name: " + browserName);
         return driver;
     }
 }

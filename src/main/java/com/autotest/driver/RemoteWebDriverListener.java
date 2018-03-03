@@ -15,9 +15,9 @@ import java.net.URL;
 
 public class RemoteWebDriverListener implements IInvokedMethodListener {
 
+    private static final Logger logger = LogManager.getLogger(RemoteWebDriverListener.class);
 
-    static final Logger logger = LogManager.getLogger(RemoteWebDriverListener.class.getName());
-    
+
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         logger.debug("BEGINNING: RemoteWebDriverListener.beforeInvocation");
         if (method.isTestMethod()) {
@@ -36,7 +36,7 @@ public class RemoteWebDriverListener implements IInvokedMethodListener {
             WebDriver driver = RemoteDriverFactory.createInstance(hubURL, browserName);
             DriverManager.setWebDriver(driver);
         } else {
-            logger.warn("Provided method is NOT a TestNG testMethod!!!");
+            logger.debug("Provided method is NOT a TestNG testMethod!!!");
         }
         logger.debug("END: RemoteWebDriverListener.beforeInvocation");
     }
@@ -46,11 +46,11 @@ public class RemoteWebDriverListener implements IInvokedMethodListener {
         if (method.isTestMethod()) {
             String browser = DriverManager.getBrowserInfo();
             try {
-                BaseTestMethod bm = (BaseTestMethod)testResult.getMethod();
+                BaseTestMethod bm = (BaseTestMethod) testResult.getMethod();
                 Field f = bm.getClass().getSuperclass().getDeclaredField("m_methodName");
                 f.setAccessible(true);
                 String newTestName = testResult.getTestContext().getCurrentXmlTest().getName() + " - " + bm.getMethodName() + " - " + browser;
-                logger.info("Renaming test name from: '" + bm.getMethodName() + "' to: '" + newTestName + "'");
+                logger.info("END");
                 f.set(bm, newTestName);
             } catch (Exception ex) {
                 System.out.println("ex" + ex.getMessage());

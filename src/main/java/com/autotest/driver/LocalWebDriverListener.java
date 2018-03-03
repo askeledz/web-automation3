@@ -1,6 +1,5 @@
 package com.autotest.driver;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -12,35 +11,31 @@ import org.testng.internal.BaseTestMethod;
 import java.lang.reflect.Field;
 
 /**
- * Author: askeledzija 
+ * Author: askeledzija
  * It's a generic WebDriver manager, it works with local and remote instances of WebDriver
  */
 
 public class LocalWebDriverListener implements IInvokedMethodListener {
 
-    static final Logger logger = LogManager.getLogger(LocalWebDriverListener.class.getName());
+    private static final Logger logger = LogManager.getLogger(LocalWebDriverListener.class);
 
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        logger.debug("BEGINNING: LocalWebDriverListener.beforeInvocation");
+        logger.debug("BEGINNING: driver.LocalWebDriverListener.beforeInvocation");
         if (method.isTestMethod()) {
             // get browser name specified in the TestNG XML test suite file
             String browserName = method.getTestMethod().getXmlTest().getLocalParameters().get("browserName");
-
-            // String browserName = method.getClass().getAnnotations()
-            // String browserName = "firefox";
 
             // get and set new instance of local WebDriver
             WebDriver driver = LocalDriverFactory.createInstance(browserName);
             DriverManager.setWebDriver(driver);
         } else {
-            logger.warn("Provided method is NOT a TestNG testMethod!!!" + " --> " + method.toString());
-
+            logger.debug("Provided method is NOT a TestNG testMethod!!!");
         }
-        logger.debug("END: LocalWebDriverListener.beforeInvocation");
+        logger.debug("END: driver.LocalWebDriverListener.beforeInvocation");
     }
 
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-        logger.debug("BEGINNING: LocalWebDriverListener.afterInvocation");
+        logger.debug("BEGINNING: driver.LocalWebDriverListener.afterInvocation");
         if (method.isTestMethod()) {
             String browser = DriverManager.getBrowserInfo();
             try {
@@ -50,8 +45,8 @@ public class LocalWebDriverListener implements IInvokedMethodListener {
                 BaseTestMethod bm = (BaseTestMethod) testResult.getMethod();
                 Field f = bm.getClass().getSuperclass().getDeclaredField("m_methodName");
                 f.setAccessible(true);
-                String newTestName = testResult.getTestContext().getCurrentXmlTest().getName() + " - " + bm.getMethodName() + " - " + browser;
-                logger.info("Renaming test method name from: '" + bm.getMethodName() + "' to: '" + newTestName + "'");
+                String newTestName = testResult.getTestContext().getCurrentXmlTest().getName() + " - " + bm.getMethodName();
+                logger.info("END");
                 f.set(bm, newTestName);
             } catch (Exception ex) {
                 System.out.println("ex:\n" + ex.getMessage());
@@ -63,6 +58,6 @@ public class LocalWebDriverListener implements IInvokedMethodListener {
                 }
             }
         }
-        logger.debug("END: LocalWebDriverListener.afterInvocation");
+        logger.debug("END: driver.LocalWebDriverListener.afterInvocation");
     }
 }

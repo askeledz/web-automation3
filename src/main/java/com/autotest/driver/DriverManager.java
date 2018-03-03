@@ -8,15 +8,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 /**
- * Author: askeledzija 
+ * Author: askeledzija
  * It's a generic WebDriver manager, it works with local and remote instances of WebDriver
  */
 
 public class DriverManager {
 
+    //static Logger log;
+    private static final Logger logger = LogManager.getLogger(DriverManager.class);
     private static ThreadLocal<WebDriver> remoteWebDriver = new ThreadLocal<WebDriver>();
 
-    static final Logger logger = LogManager.getLogger(DriverManager.class.getName());
+
 
     public static WebDriver getDriver() {
         logger.debug("Getting instance of remote driver");
