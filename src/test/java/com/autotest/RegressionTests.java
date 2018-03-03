@@ -81,17 +81,17 @@ public class RegressionTests extends BaseTestCase {
         return driver.findElement(By.linkText(countryName));
     }
 
+
+
     private WebDriver invokeBrowser(String url) {
         // private void invokeBrowser(String url) {
         WebDriver driver = DriverManager.getDriver();
-
-        logger.info("Thread id = " + Thread.currentThread().getId());
-        logger.info("Hash code of webDriver instance = " + driver.hashCode());
-        logger.info("Test executed using = " + DriverManager.getBrowserInfo());
+        logger.info("START: " + DriverManager.getBrowserInfo() + " - " + getClass().getSimpleName().toString());
+        //logger.info("Thread id = " + Thread.currentThread().getId());
+        //logger.info("Driver instance= " + driver.hashCode());
         driver.get(url);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;
     }
-
 
 }
