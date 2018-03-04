@@ -7,7 +7,7 @@
 
 ## Files to download:
 *****************************
-1. geckodriver 0.19.x (https://github.com/mozilla/geckodriver/releases)
+1. geckodriver 0.19.x (https://github.com/mozilla/geckodriver/releases/tag/v0.19.1)
 2. chromedriver 2.35 (https://sites.google.com/a/chromium.org/chromedriver/downloads)
 3. selenium-server-standalone-3.8.1.jar (http://selenium-release.storage.googleapis.com/index.html?path=3.8/)
 
