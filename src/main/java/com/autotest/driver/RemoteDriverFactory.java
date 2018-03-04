@@ -3,6 +3,8 @@ package com.autotest.driver;
 
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -33,21 +35,35 @@ public class RemoteDriverFactory {
         RemoteWebDriver driver = null;
 
         if (browserName.equalsIgnoreCase("firefox")) {
-            DesiredCapabilities capability = DesiredCapabilities.firefox();
-            driver = new RemoteWebDriver(hubUrl, capability);
+//            DesiredCapabilities capability = DesiredCapabilities.firefox();
+//            driver = new RemoteWebDriver(hubUrl, capability);
+//            driver.manage().window().maximize();
+//            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+//            return driver;
+
+            FirefoxOptions options = new FirefoxOptions();
+
+            //Set Firefox Headless mode as TRUE
+            //options.setHeadless(true);
+
+            driver = new FirefoxDriver(options);
+            driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             return driver;
+
         }
         if (browserName.equalsIgnoreCase("chrome")) {
             DesiredCapabilities capability = DesiredCapabilities.chrome();
 
             ChromeOptions options = new ChromeOptions();
             options.addArguments("disable-infobars");
+            options.addArguments("--window-size=1920,1080");
             // options.addArguments("--start-maximized");
             // options.addArguments("--kiosk");
 
             capability.setCapability(ChromeOptions.CAPABILITY, options);
             driver = new RemoteWebDriver(hubUrl, capability);
+            driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             return driver;
         }
@@ -60,6 +76,7 @@ public class RemoteDriverFactory {
         if (browserName.equalsIgnoreCase("safari")) {
             DesiredCapabilities capability = DesiredCapabilities.safari();
             driver = new RemoteWebDriver(hubUrl, capability);
+            driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             return driver;
         }
@@ -72,6 +89,7 @@ public class RemoteDriverFactory {
 //            capability.setCapability(EdgeOptions.CAPABILITY, options);
 //            capability.setVersion("ANY");
             driver = new RemoteWebDriver(hubUrl, capability);
+            driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             return driver;
         }

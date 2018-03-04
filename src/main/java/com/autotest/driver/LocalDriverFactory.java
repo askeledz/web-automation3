@@ -27,27 +27,29 @@ public class LocalDriverFactory {
 
     static WebDriver createInstance(String browserName) {
         WebDriver driver = null;
-
         if (browserName.equalsIgnoreCase("firefox")) {
 
             System.setProperty("webdriver.gecko.driver", "geckodriver");
-            System.setProperty("webdriver.firefox.logfile","Firefox.log" );
+            System.setProperty("webdriver.firefox.logfile", "Firefox.log");
+
+
+            FirefoxOptions options = new FirefoxOptions();
 
             //Set Firefox Headless mode as TRUE
-            FirefoxOptions options = new FirefoxOptions();
-            options.setHeadless(true);
+            //options.setHeadless(true);
 
             driver = new FirefoxDriver(options);
+            driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             //logger.info("Browser name: " + browserName);
             return driver;
 
-        }
 
+        }
         if (browserName.equalsIgnoreCase("chrome")) {
 
-            System.setProperty("webdriver.chrome.driver","chromedriver");
-            System.setProperty("webdriver.chrome.logfile","Chrome.log" );
+            System.setProperty("webdriver.chrome.driver", "chromedriver");
+            System.setProperty("webdriver.chrome.logfile", "Chrome.log");
 
             ChromeOptions options = new ChromeOptions();
 
@@ -58,31 +60,31 @@ public class LocalDriverFactory {
             //options.addArguments("--start-maximized");
             //options.addArguments("--kiosk");
 
-            //DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-            //capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-
             driver = new ChromeDriver(options);
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
             //logger.info("Browser name: " + browserName);
             return driver;
 
+
         }
         if (browserName.equalsIgnoreCase("ie")) {
-
             driver = new InternetExplorerDriver();
-            //logger.info("Browser name: " + browserName);
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            // logger.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
             return driver;
         }
-
         if (browserName.toLowerCase().contains("safari")) {
             System.setProperty("webdriver.safari.logfile", "Safari.log");
             driver = new SafariDriver();
+            driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-            //logger.info("Browser name: " + browserName);
+
+            // logger.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
             return driver;
         }
 
-        //logger.info("LocalDriverFactory created an instance of WebDriver for: " + browserName);
+        //logger.info("LocalDriverFactory created aa instance of WebDriver for: " + browserName);
         return driver;
     }
 }

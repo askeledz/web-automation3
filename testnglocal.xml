@@ -1,60 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test executed using local WebDriver" parallel="tests" thread-count="1">
+<suite name="Test executed using local WebDriver" parallel="tests" thread-count="3">
     <listeners>
         <listener class-name="com.autotest.driver.LocalWebDriverListener" />
     </listeners>
 
-    <!--<test name="Tests run in FF">-->
-    <!--<parameter name="browserName" value="firefox" />-->
-    <!--<packages> <package name="com.autotest.test" /> </packages>-->
-    <!--<classes>-->
-    <!--<class name="com.autotest.VerifyLandingPage" />-->
-    <!--&lt;!&ndash;<class name="com.autotest.test.SecondTestClass" />&ndash;&gt;-->
-    <!--</classes>-->
-    <!--</test>-->
 
-    <test name="Tests run in Chrome 1">
+    <test name="Tests run in Chrome">
         <parameter name="browserName" value="chrome" />
-        <!-- 		<packages>
-                       <package name="com.autotest.test" />
-                       </packages> -->
         <classes>
-            <class name="com.autotest.RegressionTests">
-                <methods>
-                    <include name=".*test.*"/>
-                    <exclude name=".*extest.*"/>
-                </methods>
-            </class>
+            <!-- 1 -->        <class name="com.autotest.RegressionTests"></class>
         </classes>
     </test>
 
-    <!--<test name="Tests run in Chrome 2">-->
-        <!--<parameter name="browserName" value="chrome" />-->
-        <!--&lt;!&ndash; 		<packages>-->
-                       <!--<package name="com.autotest.test" />-->
-                       <!--</packages> &ndash;&gt;-->
-        <!--<classes>-->
-            <!--<class name="com.autotest.RegressionTests">-->
-                <!--<methods>-->
-                    <!--<include name=".*test.*"/>-->
-                    <!--<exclude name=".*extest.*"/>-->
-                <!--</methods>-->
-            <!--</class>-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="Tests run in Firefox">
+        <parameter name="browserName" value="firefox" />
+        <classes>
+            <!-- 1 -->        <class name="com.autotest.RegressionTests"></class>
+        </classes>
+    </test>
 
-
-
-
-
-    <!--<test name="Tests run in Safari">-->
-    <!--<parameter name="browserName" value="safari" />-->
-    <!--<packages> <package name="com.autotest.test" /> </packages>-->
-    <!--<classes>-->
-    <!--<class name="com.autotest.VerifyLandingPage" />-->
-    <!--</classes>-->
-    <!--</test>-->
+    <test name="Tests run in Safari">
+        <parameter name="browserName" value="safari" />
+        <classes>
+            <!-- 1 -->        <class name="com.autotest.RegressionTests"></class>
+        </classes>
+    </test>
 
 
 </suite>
