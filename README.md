@@ -91,7 +91,7 @@ Once you have obtained, installed, and configured the test to use the correct Se
 
  - Ensure that the Develop menu is available. It can be turned on by opening Safari preferences Safari > Preferences in the menu bar), going to the Advanced tab, and ensuring that the Show Develop menu in menu bar checkbox is checked.
  - Enable Remote Automation in the Develop menu. This is toggled via Develop > Allow Remote Automation in the menu bar.
- - Authorize safaridriver to launch the webdriverd service which hosts the local web server. To permit this, run 
+ - Authorize safaridriver to launch the webdriver service which hosts the local web server. To permit this, run 
  
     - $/usr/bin/safaridriver --enable (complete the authentication prompt)
 
