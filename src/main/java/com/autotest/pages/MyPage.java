@@ -34,11 +34,4 @@ public class MyPage {
         return false;
     }
 
-    // go to ? page from MyPage
-    //public LoginPage goToLoginPage() {
-     //   new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOf(signInBtn));
-     //   signInBtn.click();
-     //   return new LoginPage(driver);
-   // }
-
 }

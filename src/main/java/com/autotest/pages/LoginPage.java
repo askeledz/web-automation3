@@ -21,8 +21,11 @@ public class LoginPage {
     @FindBy(how = How.ID, using = "passwd")
     WebElement userPassword;
 
+    @FindBy(how = How.XPATH, using = "//*[@id=\"header\"]/div[2]/div/div/nav/div[1]")
+    WebElement signInBtn;
+
     @FindBy(how = How.CSS, using = "#SubmitLogin > span")
-    WebElement signInButton;
+    WebElement submitButton;
 
 
     public LoginPage(WebDriver driver) {
@@ -50,10 +53,28 @@ public class LoginPage {
         userPassword.sendKeys(pass);
     }
 
+    public void signInClick(){
+        signInBtn.click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void submitClick(){
+        submitButton.click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     // go to data page from home page
     public MyPage goToMyPage(){
-        new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOf(signInButton));
-        signInButton.click();
+        new WebDriverWait(driver, 60).until(ExpectedConditions.visibilityOf(submitButton));
+        submitButton.click();
         return new MyPage(driver);
     }
 }
