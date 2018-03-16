@@ -15,14 +15,12 @@ import java.util.concurrent.TimeUnit;
 public class BaseTestCase {
 
     private static final Logger logger = LogManager.getLogger(BaseTestCase.class);
-    protected static WebDriver driver = null;
 
     protected WebDriver invokeBrowser(String url) {
-        // private void invokeBrowser(String url) {
         WebDriver driver = DriverManager.getDriver();
         logger.info("START: " + DriverManager.getBrowserInfo());
-        //logger.info("Thread id = " + Thread.currentThread().getId());
-        //logger.info("Driver instance= " + driver.hashCode());
+        logger.info("Thread id = " + Thread.currentThread().getId());
+        logger.info("Driver instance= " + driver.hashCode());
         driver.get(url);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;
