@@ -1,5 +1,6 @@
 package com.autotest;
 
+import com.autotest.pages.LoginPage;
 import com.autotest.pages.MyPage;
 import com.autotest.test.BaseTestCase;
 import com.autotest.util.Config;
@@ -42,7 +43,11 @@ public class RegressionTests extends BaseTestCase {
     public void testLandingPage() {
         driver = invokeBrowser(Config.USER_URL);
 
-        login(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.signInClick();
+        loginPage.inputEmail(Config.USER_MAIL);
+        loginPage.inputPassword(Config.USER_PASSWORD);
+        loginPage.submitClick();
 
         //Go to and Create My Page
         MyPage myPage = new MyPage(driver);

@@ -1,8 +1,6 @@
 package com.autotest.test;
 
 import com.autotest.driver.DriverManager;
-import com.autotest.pages.LoginPage;
-import com.autotest.util.Config;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -24,13 +22,5 @@ public class BaseTestCase {
         driver.get(url);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;
-    }
-
-    protected void login(WebDriver driver) {
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.signInClick();
-        loginPage.inputEmail(Config.USER_MAIL);
-        loginPage.inputPassword(Config.USER_PASSWORD);
-        loginPage.submitClick();
     }
 }
